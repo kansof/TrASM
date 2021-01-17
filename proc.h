@@ -2,30 +2,7 @@
 #define PROC_H
 #include <stdlib.h>
 #include <stdint.h>
-#define set_trit(t, n, v) t = (((t >> 2*n) << n) + v << 2*n) | (t & (2*n))
-
-typedef struct {
-    uint16_t tryte;
-    int8_t used;
-} tryte_t;
-
-int set_tryte(tryte_t* t, int value) {
-    if (value > 3280 || value < -3280)
-        return EXIT_FAILURE;
-
-    t->used = 0;
-    t->tryte = 0;
-    int m;
-    while (value > 0) {
-        t->tryte <<= 2;
-        m = value % 3;
-        set_trit(t->tryte, 0, m);
-        t->used++;
-        value /= 3;
-    }
-
-    return EXIT_SUCCESS;
-}
+#include "tryte.h
 
 typedef struct {
     tryte_t ax[2];
@@ -34,6 +11,17 @@ typedef struct {
     tryte_t dx[2];
 } proc_t;
 
-int init_proc(proc_t* proc);
+int init_proc(proc_t* proc) {
+    set_tryte(&proc->ax[0], 0);
+    set_tryte(&proc->ax[1], 0);
+    set_tryte(&proc->bx[0], 0);
+    set_tryte(&proc->bx[1], 0);
+    set_tryte(&proc->cx[0], 0);
+    set_tryte(&proc->cx[1], 0);
+    set_tryte(&proc->dx[0], 0);
+    set_tryte(&proc->dx[1], 0);
+
+    return EXIT_SUCCESS;
+}
 
 #endif //PROC_H

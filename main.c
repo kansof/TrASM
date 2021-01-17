@@ -2,9 +2,12 @@
 #include "proc.h"
 
 int main() {
-    tryte_t t;
-    set_tryte(&t, 100);
+    proc_t proc;
+    init_proc(&proc);
+    set_tryte(&proc.ax[0], -3278);
+//    tryte_t t;
+//    set_tryte(&t, -100);
 //    set_trit(t.tryte, 1, 3);
-    printf("%d %d", t.tryte, t.used);
+    print_tryte(&proc.ax[0]);
     return EXIT_SUCCESS;
 }

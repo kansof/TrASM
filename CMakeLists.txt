@@ -3,4 +3,4 @@ project(TrASM C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(TrASM main.c proc.h)
+add_executable(TrASM main.c proc.h tryte.h)
